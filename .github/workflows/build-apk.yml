@@ -31,8 +31,8 @@ jobs:
 
       - name: Compilar APK com Flet
         run: |
-          # Adicionamos a flag --yes para o Flet não travar pedindo confirmação no terminal
-          flet build apk src/main.py --yes
+          # Passamos o diretório atual (.) e mantemos a flag --yes
+          flet build apk . --yes
 
       - name: Salvar o APK gerado como Artefato
         uses: actions/upload-artifact@v4
