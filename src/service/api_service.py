@@ -1,0 +1,24 @@
+import requests
+import flet as ft
+
+def main(page: ft.Page):
+    # Função simulada para enviar a foto capturada para o FastAPI
+    def enviar_foto_para_api(caminho_imagem):
+        url = "https://sua-api-fastapi.com/processar-etiqueta" # Ou o IP local se estiver testando na mesma rede
+        
+        with open(caminho_imagem, "rb") as image_file:
+            files = {"file": image_file}
+            response = requests.post(url, files=files)
+            
+        if response.status_code == 200:
+            dados = response.json()
+            page.snack_bar = ft.SnackBar(ft.Text(f"Sucesso! Código: {dados.get('codigo')}"))
+            page.snack_bar.open = True
+            page.update()
+        else:
+            print("Erro ao processar imagem na API")
+
+    # Seu layout do app aqui...
+    page.add(ft.Text("Marju Express - Leitor Mobile"))
+
+ft.app(target=main)

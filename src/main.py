@@ -1,9 +1,7 @@
-import cv2
 import flet as ft
 import requests
-from pyzbar.pyzbar import decode
 
-# URL onde o seu FastAPI está rodando
+# URL onde o seu FastAPI está rodando (substitua pelo IP da sua VPS ou rede local se testar no celular)
 API_URL = "http://127.0.0.1:8000"
 
 
@@ -26,53 +24,19 @@ def main(page: ft.Page):
         visible=False
     )
 
-    # --- Função para abrir a câmera (Com indentação correta) ---
-    def escanear_codigo_barras():
-        """Abre a webcam, lê o código de barras/etiqueta e retorna o texto lido"""
-        cap = cv2.VideoCapture(0)
-        codigo_lido = None
-
-        print("Câmera aberta. Aproxime a etiqueta...")
-
-        while cap.isOpened():
-            ret, frame = cap.read()
-            if not ret:
-                break
-
-            # Procura por códigos de barras ou QR codes na imagem da câmera
-            for barcode in decode(frame):
-                codigo_lido = barcode.data.decode('utf-8')
-                print(f"Código encontrado: {codigo_lido}")
-                break
-
-            # Mostra a janela da câmera em tempo real
-            cv2.imshow('Marju Express - Leitor de Etiqueta', frame)
-
-            # Fecha se leu o código ou se o usuário apertar a tecla 'q'
-            if codigo_lido or (cv2.waitKey(1) & 0xFF == ord('q')):
-                break
-
     # --- Função de Ação do Botão ---
     def on_scan_click(e):
-        status_label.value = "Abrindo a câmera para escanear a etiqueta..."
+        status_label.value = "Enviando solicitação para o servidor..."
         resultado_card.visible = False
         page.update()
 
-        # 1. Abre a câmera e captura o código
-        codigo = escanear_codigo_barras()
-
-        if not codigo:
-            status_label.value = "Escaneamento cancelado ou nenhum código encontrado."
-            resultado_card.visible = False
-            page.update()
-            return
-
-        # 2. Consulta o servidor FastAPI
-        status_label.value = f"Código lido: {codigo}. Consultando o servidor..."
-        page.update()
+        # Simulando o envio de um código ou requisição para a API FastAPI
+        # (Aqui você integrará a captura de imagem ou input do código de barras)
+        codigo_exemplo = "7891023456789" 
 
         try:
-            response = requests.post(f"{API_URL}/escanear", json={"codigo": codigo})
+            # Faz a requisição POST para a sua API FastAPI
+            response = requests.post(f"{API_URL}/escanear", json={"codigo": codigo_exemplo})
             
             if response.status_code == 200:
                 dados_resposta = response.json() 
@@ -80,7 +44,7 @@ def main(page: ft.Page):
                 bairro = dados_resposta.get("bairro", "Centro")
                 
                 status_label.value = "Processamento concluído!"
-                resultado_card.content.content.value = f"📦 Código: {codigo}\n📍 Destino: {destino} ({bairro})"
+                resultado_card.content.content.value = f"📦 Código: {codigo_exemplo}\n📍 Destino: {destino} ({bairro})"
                 resultado_card.content.bgcolor = ft.Colors.GREEN_700
                 resultado_card.visible = True
             else:
@@ -106,7 +70,7 @@ def main(page: ft.Page):
     botao_scan = ft.Button(
         content=ft.Row(
             [             
-                ft.Text("Escanear")
+                ft.Text("Escanear / Consultar")
             ],
             alignment=ft.MainAxisAlignment.CENTER
         ),
