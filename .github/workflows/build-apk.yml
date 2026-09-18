@@ -3,7 +3,7 @@ name: Build Flet APK
 on:
   push:
     branches:
-      - main  # Ou 'master', dependendo de qual branch principal você usa
+      - main
 
 jobs:
   build:
@@ -28,13 +28,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install flet
-          # Se você tiver um requirements.txt, descomente a linha abaixo:
-          # pip install -r requirements.txt
 
       - name: Compilar APK com Flet
         run: |
-          # Ajuste o caminho se o seu arquivo principal estiver em 'src/main.py'
-          flet build apk src/main.py
+          # Adicionamos a flag --yes para o Flet não travar pedindo confirmação no terminal
+          flet build apk src/main.py --yes
 
       - name: Salvar o APK gerado como Artefato
         uses: actions/upload-artifact@v4
