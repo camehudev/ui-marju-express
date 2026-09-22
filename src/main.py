@@ -10,7 +10,7 @@ def main(page: ft.Page):
     page.padding = 0 
 
     # URL do seu sistema em produção (Angular, etc.)
-    URL_SISTEMA = "https://ui-resgistro-gasto.vercel.app/login"  # <--- Substitua pela sua URL real
+    URL_SISTEMA = "https://pessoal-web-marju-express.sjj3wv.easypanel.host/"  # <--- Substitua pela sua URL real
 
     # Criação do componente WebView
     webview = ftwv.WebView(
