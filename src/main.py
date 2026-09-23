@@ -34,16 +34,7 @@ def main(page: ft.Page):
     )
 
     # Adiciona a barra de progresso e o WebView organizados em coluna
-    page.add(
-        ft.Column(
-            [
-                progresso,
-                webview
-            ],
-            expand=True,
-            spacing=0
-        )
-    )
+    page.add(webview)
 
 if __name__ == "__main__":
     ft.run(main)
