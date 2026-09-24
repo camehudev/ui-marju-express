@@ -21,4 +21,4 @@ def main(page: ft.Page):
     # Seu layout do app aqui...
     page.add(ft.Text("Marju Express - Leitor Mobile"))
 
-ft.app(target=main)
+ft.run(main)

@@ -10,11 +10,11 @@ def main(page: ft.Page):
     page.padding = 0
 
     # URL do seu sistema em produção (Angular, etc.)
-    URL_SISTEMA = "https://pessoal-web-marju-express.sjj3wv.easypanel.host/"
+    # URL_SISTEMA = "https://pessoal-web-marju-express.sjj3wv.easypanel.host/"
 
     # Criação do componente WebView (sem barra de progresso)
     webview = ftwv.WebView(
-        url=URL_SISTEMA,
+        url="https://pessoal-web-marju-express.sjj3wv.easypanel.host/",
         expand=True,  # Ocupa todo o espaço disponível na tela
         on_web_resource_error=lambda e: print("Erro ao carregar página:", e.data),
     )
