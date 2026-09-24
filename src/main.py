@@ -1,9 +1,10 @@
 import flet as ft
 import flet_webview as fwv
+import flet_permission_handler as fph
 
 def main(page: ft.Page):
-    # 1. Adicionar o manipulador de permissões na overlay da página
-    ph = ft.PermissionHandler()
+    # Instancia e adiciona o manipulador de permissões correto
+    ph = fph.PermissionHandler()
     page.overlay.append(ph)
 
     page.add(
