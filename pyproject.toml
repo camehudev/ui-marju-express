@@ -37,13 +37,16 @@ copyright = "Copyright (C) 2023-2026 by Flet"
 [tool.flet.android]
 # Caminho relativo para o ícone do aplicativo
 icon = "src/assets/icon.png"
-permissions = [
-    "CAMERA",
-    "READ_EXTERNAL_STORAGE",
-    "WRITE_EXTERNAL_STORAGE",
-    "READ_MEDIA_IMAGES"
-]
 
+[tool.flet.android.permission]
+"android.permission.CAMERA" = true
+"android.permission.READ_EXTERNAL_STORAGE" = true
+"android.permission.WRITE_EXTERNAL_STORAGE" = true
+"android.permission.READ_MEDIA_IMAGES" = true
+
+[tool.flet.android.feature]
+"android.hardware.camera" = true
+"android.hardware.camera.any" = true
 
 
 # src/assets/icon.png is the icon for every platform. Keep it transparent and
