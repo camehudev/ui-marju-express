@@ -30,9 +30,11 @@ pythonpath = ["src"]
 [tool.flet]
 desktop_flavor = "light"    # Change to "full" to use flet-audio and flet-video
 org = "com.mycompany"
-product = "marju-express-ui"
+product = "Marju Log"
 company = "Flet"
 copyright = "Copyright (C) 2023-2026 by Flet"
+permissions = ["camera", "microphone"]
+
 
 [tool.flet.android]
 # Caminho relativo para o ícone do aplicativo
@@ -47,7 +49,6 @@ icon = "src/assets/icon.png"
 [tool.flet.android.feature]
 "android.hardware.camera" = true
 "android.hardware.camera.any" = true
-
 
 # src/assets/icon.png is the icon for every platform. Keep it transparent and
 # filling the whole canvas: web, Windows and Linux show it as-is, and Flet
