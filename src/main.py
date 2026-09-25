@@ -7,15 +7,17 @@ def main(page: ft.Page):
 
     URL_SISTEMA = "https://pessoal-web-marju-express.sjj3wv.easypanel.host/"
 
-    # Adiciona a permissão apenas se estiver a correr numa plataforma compatível (ex: Android)
-    if page.web is False and page.platform in [ft.PagePlatform.ANDROID, ft.PagePlatform.IOS, ft.PagePlatform.WINDOWS]:
+    # Configuração de permissões para Android/Mobile
+    if page.web is False and page.platform in [ft.PagePlatform.ANDROID, ft.PagePlatform.IOS]:
         try:
             import flet_permission_handler as fph
-            permissao = fph.PermissionHandler()
-            page.overlay.append(permissao)
-            # Pode pedir a permissão da câmera aqui se necessário
+            ph = fph.PermissionHandler()
+            page.overlay.append(ph)
+            
+            # Pede a permissão de câmera de forma assíncrona ou direta ao iniciar
+            ph.request(fph.Permission.CAMERA)
         except Exception as e:
-            print("Erro ao carregar permissões:", e)
+            print("Erro ao gerir permissões:", e)
 
     webview = fwv.WebView(
         url=URL_SISTEMA,
