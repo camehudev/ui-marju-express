@@ -26,12 +26,12 @@ jobs:
       - name: Renomear APK para identificação
         run: |
           mkdir -p release
-          mv build/apk/*.apk release/marju-express-v1.0.${{ github.run_number }}.apk
+          mv build/apk/*.apk release/marju-log-v1.0.${{ github.run_number }}.apk
 
       - name: Criar Release e Enviar APK
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
-          name: "Marju Express - Versão 1.0.${{ github.run_number }}"
+          name: "Marju Log - Versão 1.0.${{ github.run_number }}"
           body: "Atualização automática gerada via GitHub Actions na nuvem."
           files: release/*.apk

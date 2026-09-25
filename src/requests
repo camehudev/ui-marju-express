@@ -19,6 +19,6 @@ def main(page: ft.Page):
             print("Erro ao processar imagem na API")
 
     # Seu layout do app aqui...
-    page.add(ft.Text("Marju Express - Leitor Mobile"))
+    page.add(ft.Text("Marju Log - Leitor Mobile"))
 
 ft.run(main)

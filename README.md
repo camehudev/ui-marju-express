@@ -1,4 +1,4 @@
-# MarjuExpressUi app
+# MarjuLog app
 
 ## Run the app
 
